@@ -5,14 +5,14 @@
   "manifest_version": 3,
   "name": "SERP Extension",
   "author": "Devin Schumacher @ SERP https://serp.co",
-  "version": "4",
+  "version": "5.0.0",
   "description": "A multi-purpose extension for increasing productivity online.",
   "permissions": ["activeTab", "scripting", "storage", "tabs"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   },
   "action": {
-    "default_popup": "clapper.html",
+    "default_popup": "components/popup.html",
     "default_icon": {
       "16": "images/icons/icon16.png",
       "48": "images/icons/icon48.png",

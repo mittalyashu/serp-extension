@@ -1,4 +1,4 @@
-<html>
+<meta charset="UTF-8">
 
 <head>
     <title>SERP Extension</title>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="speed-div">
-                <input id="redditSpeed" type="number" min="100" max="3000" step="50" value="100">
+                <input id="redditSpeed" title="redditSpeed" type="number" min="100" max="3000" step="50" value="100">
                 <button id="redditSpeedBtn">Set Speed</button>
             </div>
         </div>
@@ -60,7 +60,7 @@
 
             <div class="speed-div">
                 <div class="speed-div-content">
-                    <input id="mediumSpeedEachClap" type="number" min="100" max="3000" step="50" value="100">
+                    <input id="mediumSpeedEachClap" title="mediumSpeedEachClap" type="number" min="100" max="3000" step="50" value="100">
                     <p>B/w each clap</p>
                 </div>
 
@@ -68,14 +68,14 @@
             </div>
             <div class="speed-div">
                 <div class="speed-div-content">
-                    <input id="mediumSpeedEachArticle" type="number" min="100" max="3000" step="50" value="100">
+                    <input id="mediumSpeedEachArticle" title="mediumSpeedEachArticle" type="number" min="100" max="3000" step="50" value="100">
                     <p>B/w each article</p>
                 </div>
                 <button id="mediumSpeedEachArticleBtn">Set Speed</button>
             </div>
             <div class="speed-div">
                 <div class="speed-div-content">
-                    <input id="mediumSpeedPageScroll" type="number" min="100" max="3000" step="50" value="100">
+                    <input id="mediumSpeedPageScroll" title="mediumSpeedPageScroll" type="number" min="100" max="3000" step="50" value="100">
                     <p>B/w each page scroll</p>
                 </div>
                 <button id="mediumSpeedPageScrollBtn">Set Speed</button>
@@ -88,7 +88,7 @@
         NOTE: If you notice the extension is still clapping after you stopped it. Try reloading the page.
     </p>
 
-    <script src="popup.js"></script>
+    <script src="js/popup.js"></script>
     <script src="js/nofollow.js"></script>
 </body>
 
