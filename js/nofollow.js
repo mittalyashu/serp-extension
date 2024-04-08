@@ -47,7 +47,7 @@ async function disableNoFollow() {
   chrome.tabs.sendMessage(activeTab.id, {
     message: "___serp_ext_stop_script",
   });
-  
+
   const url = new URL(activeTab.url);
   chrome.storage.local.set(
     { [`___serp_ext_disable-noFollow-${url.host}`]: true },
@@ -69,7 +69,6 @@ async function checkState() {
   const url = new URL(activeTab.url);
   const key = `___serp_ext_disable-noFollow-${url.host}`;
   chrome.storage.local.get([key], function (result) {
-    console.log('res', result);
     if (result.hasOwnProperty(key)) {
       noFollowBtn.innerHTML = "Enable";
       noFollowBtn.onclick = enableNoFollow;

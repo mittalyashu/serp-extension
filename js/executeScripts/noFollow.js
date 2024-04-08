@@ -1,7 +1,6 @@
 var ID = "___serp_ext_nofollow"
 
 function addStyles() {
-  console.log('addStyles');
   const css = document.createElement("style");
   css.id = ID;
 
