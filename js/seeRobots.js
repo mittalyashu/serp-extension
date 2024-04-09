@@ -27,7 +27,7 @@ async function startRobotsFunc() {
       message: "___serp_ext_start_robots_tags",
     },
     function (response) {
-      if (Object.keys(response).length === 0) return;
+      if (response && Object.keys(response).length === 0) return;
 
       if (response?.index) {
         indexText.setAttribute("class", "green");

@@ -85,7 +85,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 });
 
 function UpdateIcon(source, tabId) {
-  if (Object.keys(source).length === 0) return;
+  if (source && Object.keys(source).length === 0) return;
 
   var output =
     (source.index == false ? "no" : "") +
