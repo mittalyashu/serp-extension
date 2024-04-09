@@ -15,13 +15,33 @@ function runNoFollowScript(tabId, tabUrl) {
   });
 }
 
+function runSeeRobotsScript(tabId) {
+  chrome.scripting.executeScript({
+    target: { tabId },
+    files: ["js/executeScripts/seeRobots.js"],
+  });
+
+  chrome.tabs.sendMessage(
+    tabId,
+    {
+      message: "___serp_ext_start_robots_tags",
+    },
+    function (response) {
+      UpdateIcon(response, tabId);
+    }
+  );
+}
+
 chrome.tabs.onActivated.addListener(function (activeInfo) {
+  if (!activeInfo.tabId) return false;
+
   chrome.tabs.get(activeInfo.tabId, function (tab) {
     var tabUrl = tab.url;
 
     if (tabUrl.startsWith("http://") || tabUrl.startsWith("https://")) {
       setActivePlatform(tabUrl);
       runNoFollowScript(tab.id, tabUrl);
+      runSeeRobotsScript(tab.id);
     }
   });
 });
@@ -55,8 +75,36 @@ chrome.tabs.query({}, function (tabs) {
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (changeInfo.status === "loading" || changeInfo.status === "complete") {
+    if (!tabId) return false;
+
     if (tab.url.startsWith("http://") || tab.url.startsWith("https://")) {
       runNoFollowScript(tabId, tab.url);
+      runSeeRobotsScript(tabId);
     }
   }
 });
+
+function UpdateIcon(source, tabId) {
+  if (source && Object.keys(source).length === 0) return;
+
+  var output =
+    (source.index == false ? "no" : "") +
+    "index / " +
+    (source.follow == false ? "no" : "") +
+    "follow";
+  var icon =
+    "/images/" +
+    (source.index == false ? "no" : "") +
+    "index-" +
+    (source.follow == false ? "no" : "") +
+    "follow.png";
+
+  chrome.action.setTitle({
+    title: output,
+    tabId,
+  });
+  chrome.action.setIcon({
+    path: icon,
+    tabId,
+  });
+}

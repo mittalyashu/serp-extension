@@ -1,12 +1,12 @@
 // 1 seconds (1000 ms)
-const defaultSpeed = 1000;
+const DEFAULT_SPEED = 1000;
 
 function getStorageValue(key) {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get([key], function (result) {
       if (result[key] === undefined) {
-        chrome.storage.local.set({ [key]: defaultSpeed }, function () {
-          resolve(defaultSpeed);
+        chrome.storage.local.set({ [key]: DEFAULT_SPEED }, function () {
+          resolve(DEFAULT_SPEED);
         });
       } else {
         resolve(result[key]);
