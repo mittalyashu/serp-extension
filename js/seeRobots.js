@@ -11,9 +11,6 @@ function getActiveTag() {
   });
 }
 
-const seeRobotsBtn = document.getElementById("seeRobotsBtn");
-seeRobotsBtn.onclick = startRobotsFunc;
-
 const seeRobotsData = document.getElementsByClassName("seeRobots-data");
 const indexText = document.getElementById("seeRobotsIndex");
 const robotsText = document.getElementById("seeRobotsFollow");
@@ -30,25 +27,25 @@ async function startRobotsFunc() {
       message: "___serp_ext_start_robots_tags",
     },
     function (response) {
-      if (response.index) {
-        indexText.setAttribute('class', 'green')
+      if (Object.keys(response).length === 0) return;
+
+      if (response?.index) {
+        indexText.setAttribute("class", "green");
       } else {
-        indexText.setAttribute('class', 'red')
+        indexText.setAttribute("class", "red");
       }
 
-      if (response.follow) {
-        robotsText.setAttribute('class', 'green')
+      if (response?.follow) {
+        robotsText.setAttribute("class", "green");
       } else {
-        robotsText.setAttribute('class', 'red')
+        robotsText.setAttribute("class", "red");
       }
 
       if (seeRobotsData && seeRobotsData[0]) {
-        seeRobotsData[0].removeAttribute('style');
-      }
-
-      if (seeRobotsBtn) {
-        seeRobotsBtn.setAttribute('style', 'display: none');
+        seeRobotsData[0].removeAttribute("style");
       }
     }
   );
 }
+
+startRobotsFunc();

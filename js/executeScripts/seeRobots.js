@@ -12,10 +12,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
     }
 
-    robotsInfo.index =
-      metatag.indexOf("noindex") != -1 || metatag == "noindex" ? false : true;
-    robotsInfo.follow =
-      metatag.indexOf("nofollow") != -1 || metatag == "nofollow" ? false : true;
+    if (metatag === "") {
+      robotsInfo.index = true;
+      robotsInfo.follow = true;
+    } else {
+      robotsInfo.index =
+        metatag.indexOf("noindex") != -1 || metatag == "noindex" ? false : true;
+      robotsInfo.follow =
+        metatag.indexOf("nofollow") != -1 || metatag == "nofollow"
+          ? false
+          : true;
+    }
 
     sendResponse(robotsInfo);
   }
